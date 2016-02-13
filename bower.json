@@ -6,7 +6,7 @@
   ],
   "description": "Handle two-factor requests",
   "main": [
-    "scripts/module.js"
+    "scripts/module.js",
     "scripts/directives/valid-two-factor-code.js",
     "scripts/services/two-factor.js",
     "scripts/interceptors/two-factor.js"
@@ -23,6 +23,6 @@
     "angular-bootstrap": "^1.1.2"
   },
   "devDependencies": {
-    "angular-users": "Life-Letters/angular-users#^0.4.0"
+    "angular-users": "Life-Letters/angular-users#^0"
   }
 }
