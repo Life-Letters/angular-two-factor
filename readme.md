@@ -5,7 +5,7 @@ Handles two-factor codes.
 
 ## Install and usage
 
-		bower install Life-Letters/two-factor --save
+    bower install Life-Letters/two-factor --save
 
 To make the templates available you can either manually
 copy the views folder to your parent project directory. 
