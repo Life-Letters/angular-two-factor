@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+  	Authentication required
+  </h3>
+</div>
+
+<form name="form" novalidate ng-submit="continue()">
+	<div class="modal-body">
+		<p>
+			We need to verify your identify before you can continue. 
+			You should shortly receive a verification code via SMS.
+		</p>
+		<p>
+			Please enter the code into the field below:
+		</p>
+		<div class="form-group" ng-class="{'has-error': form.$submitted && form.$invalid}">
+			<input type="text" name="code" class="form-control" placeholder="1234"
+					ng-model="code" ng-model-options="{debounce:500}"
+					required="required" valid-two-factor-code>
+
+			<p class="help-block" ng-if="form.$submitted && form.code.$error.required">
+        Please enter your two-factor code</p>
+			<p class="help-block" ng-if="form.$submitted && form.code.$error.validTwoFactorCode">
+        Two-factor code not recognised</p>
+    </div>
+	</div>
+
+	<div class="modal-footer">
+	  <button type="submit" class="btn btn-primary pull-right" 
+	  		ng-click="continue()">Continue</button>
+	</div>
+</form>
+

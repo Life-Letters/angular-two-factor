@@ -1,0 +1,7 @@
+{
+  "name": "angular-two-factor",
+  "dependencies": {
+    "express": "^4.13.4",
+    "morgan": "^1.6.1"
+  }
+}

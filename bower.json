@@ -1,0 +1,28 @@
+{
+  "name": "angular-two-factor",
+  "homepage": "https://github.com/Life-Letters/angular-two-factor",
+  "authors": [
+    "Torben Sko <torben.sko@lifeletters.com>"
+  ],
+  "description": "Handle two-factor requests",
+  "main": [
+    "scripts/module.js"
+    "scripts/directives/valid-two-factor-code.js",
+    "scripts/services/two-factor.js",
+    "scripts/interceptors/two-factor.js"
+  ],
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "^1.1.2"
+  },
+  "devDependencies": {
+    "angular-users": "Life-Letters/angular-users#^0.4.0"
+  }
+}

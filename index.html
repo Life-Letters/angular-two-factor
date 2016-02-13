@@ -1,0 +1,63 @@
+<html ng-app="demo">
+<head>
+	<title>Two-factor Module</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-controller="main">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h3>Manual demo</h3>
+				<p>
+					Paste a two-factor URL below and click request. You will probably need to log in
+					using the <code>angular-users</code> module.
+				</p>
+			  <div class="input-group">
+			    <input type="text" class="form-control" ng-model="url">
+			    <span class="input-group-btn">
+			      <button class="btn btn-default" type="button" ng-click="request()">Request</button>
+			    </span>
+			  </div>
+			</div><!-- .col-sm-12 -->
+			<div class="col-sm-6">
+				<pre>{{ loggedInUser | json }}</pre>
+			</div><!-- .col-sm-6 -->
+		</div><!-- .row -->
+	</div><!-- .container -->
+
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="bower_components/angular-users/scripts/module.js"></script>
+	<!-- USERS -->
+	<script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-users/scripts/services/users.js"></script>
+  <!-- <script src="bower_components/angular-users/scripts/directives/user-switches.js"></script> -->
+  <!-- <script src="bower_components/angular-users/scripts/directives/email-available.js"></script> -->
+
+	<script src="scripts/module.js"></script>
+	<script src="scripts/services/two-factor.js"></script>
+	<script src="scripts/interceptors/two-factor.js"></script>
+	<script src="scripts/directives/valid-two-factor-code.js"></script>
+
+	<script>
+		angular.module('demo', ['life.users', 'life.twoFactor'])
+			.config(function(twoFactorProvider, usersProvider, $httpProvider) {
+				twoFactorProvider.setUrl('http://localhost:3000/api/v1/');
+				// Demo specific stuff:
+				usersProvider.setUrl('http://localhost:3000/api/v1/');
+    		$httpProvider.interceptors.push('twoFactorInterceptor');
+			})
+			.run(function(users) {
+				// needed for the user to be fetched
+			})
+			.controller('main', function($scope, $http) {
+				$scope.url = 'http://localhost:3000/api/v1/results/5/report';
+				$scope.request = function() {
+					$http.get($scope.url);
+				};
+			});
+	</script>
+</body>
+</html>
