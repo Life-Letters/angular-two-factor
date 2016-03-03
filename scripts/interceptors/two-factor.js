@@ -17,7 +17,9 @@ angular.module('life.twoFactor')
     };
   })
   .factory('twoFactorInterceptor', function ($q, $injector) {
-    var twoFactorCode = null;
+    
+    var twoFactorCode = null,
+        twoFactorReturnCode = 504;
 
     return {
       request: function(config) {
@@ -31,7 +33,7 @@ angular.module('life.twoFactor')
       responseError: function(response) {
 
         // Was it a 2-factor error?
-        if (response.status === 5001) {
+        if (response.status === twoFactorReturnCode) {
           var defer = $q.defer();
 
           // Avoid circular dependencies
