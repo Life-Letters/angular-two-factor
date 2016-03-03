@@ -19,7 +19,7 @@ angular.module('life.twoFactor')
   .factory('twoFactorInterceptor', function ($q, $injector) {
     
     var twoFactorCode = null,
-        twoFactorReturnCode = 504;
+        twoFactorReturnCode = 503;
 
     return {
       request: function(config) {
