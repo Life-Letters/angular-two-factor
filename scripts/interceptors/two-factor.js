@@ -18,16 +18,15 @@ angular.module('life.twoFactor')
   })
   .factory('twoFactorInterceptor', function ($q, $injector) {
     
-    var twoFactorCode = null,
-        twoFactorReturnCode = 503;
+    var twoFactorReturnCode = 503;
 
     return {
-      request: function(config) {
-        if ( twoFactorCode ) {
-          config.headers.TWOFACTOR_AUTHORIZATION = twoFactorCode;
-        }
-        return config;
-      },
+      // request: function(config) {
+      //   if ( twoFactorCode ) {
+      //     config.headers.TWOFACTOR_AUTHORIZATION = twoFactorCode;
+      //   }
+      //   return config;
+      // },
       // requestError: function(config) {},
       // response: function() {}
       responseError: function(response) {
@@ -57,9 +56,15 @@ angular.module('life.twoFactor')
           modalInstance.result
               .then(function(code) {
                 var $http = $injector.get('$http');
-                twoFactorCode = code;
+                // twoFactorCode = code;
                 // Repeat the original request
-                $http(response.config).then(defer.resolve, defer.reject);
+                $http(
+                  angular.extend(response.config, {
+                    headers: {
+                      TWOFACTOR_AUTHORIZATION: code,
+                    }
+                  })
+                ).then(defer.resolve, defer.reject);
 
               }, function () {
                 defer.reject();
