@@ -39,10 +39,10 @@ angular.module('life.twoFactor')
           var $uibModal = $injector.get('$uibModal'),
               twoFactor = $injector.get('twoFactor');
 
-          twoFactor.requestTwoFactorCode()
-            .then(function(response) {
-              console.log(response);
-            });
+          // twoFactor.requestTwoFactorCode()
+          //   .then(function(response) {
+          //     console.log(response);
+          //   });
 
           // Display the content in the modal
           var modalInstance = $uibModal
