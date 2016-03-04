@@ -9,11 +9,11 @@
  */
 angular.module('life.twoFactor')
   .controller('TwoFactorModalCtrl', function ($scope, $uibModalInstance) {
-    $scope.continue = function () {
+    $scope.continue = function (code) {
       if ( $scope.form.$invalid ) {
         return;
       }
-      $uibModalInstance.close($scope.code);
+      $uibModalInstance.close(code);
     };
   })
   .factory('twoFactorInterceptor', function ($q, $injector) {
@@ -56,6 +56,7 @@ angular.module('life.twoFactor')
           modalInstance.result
               .then(function(code) {
                 var $http = $injector.get('$http');
+                console.log(code);
                 // twoFactorCode = code;
                 // Repeat the original request
                 $http(
